@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    setTimeout(function(){
+        var errorDiv = document.getElementById('error-message');
+        if (errorDiv){
+            errorDiv.style.display = 'none';
+        }
+    }, 5000);
+    });
+</script>
+<style>
+    form{
+        background-color: blue;
+        padding: 50px;
+        margin: 50px;
+    }
+    .hello{
+        text-align: center;
+        background-color: gold;
+        border: none;
+        width: 100px;
+        height: 30px;
+    }
+
+    .hello:hover{
+        background-color: cyan;
+        cursor: pointer;
+    }
+    h1{
+        color: blue;
+        text-align: center;
+        font-family: sans-serif;
+        font-size: 20px;
+    }
+
+    p{
+        margin: 60px;
+        margin-top: 20px;
+    }
+
+    a:hover{
+        color: blue;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .content{
+    color: blue;
+    font-family: sans-serif;
+    font-size: 30px;
+    float: right;
+    }
+
+    #btn{
+    box-shadow: 0 0 5px yellow, 0 0 25px yellow;
+    background-color: yellow;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    transition: 0.3s box-shadow ease;
+    padding: 0;
+    }
+
+    #btn:hover{
+    box-shadow: 0 0 5px red, 0 0 25px red, 0 0 100px red, 0 0 200px red;
+    background-color: cyan;
+    }
+
+
+    body{
+    background-color: aqua;
+    }
+
+
+    .msg{
+    text-decoration: none;
+    list-style-type: none;
+    color: red;
+    font-family: sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    left: 20px;
+    }
+
+    #moi{
+    color: red;
+    font-weight: bold;
+    }
+    #moi:hover{
+    color: yellow;
+    }
+    .m{
+    color: white;
+    font-family: sans-serif;
+    }
+    .reg{
+    color: red;
+    font-weight: bold;
+    }
+</style>
+<body>
+    <h1>
+        <marquee behavior="" direction="">LOGIN TO EMMANUEL EMDIN CHURCH WEB</marquee></h1>
+
+
+
+    <form method="post">
+        {% csrf_token %}
+        <div id="error-message" class="error">
+        {% if messages %}
+        <ul class="msg">
+        {% for message in messages %}
+            <li>
+                {{ message }}
+            </li>
+        {% endfor %}
+
+        </ul>
+        {% endif %}
+        </div>
+
+        <label for="username">Username</label>
+        <br>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <br>
+        <label for="password">Password</label>
+        <br>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <br>
+        <br>
+        <button type="submit" id="btn" class="hello">Login</button>
+        <p class="m">Forgot Password? <a id="moi" href="{% url 'password_reset' %}">CLICK HERE</a> </p>
+    </form>
+    <p>Don't have an account? <a href="{% url 'register' %}" class="reg">REGISTER HERE</a></p>
+
+
+</body>
+</html>
